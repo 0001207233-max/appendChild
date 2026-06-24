@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 11 - Frases Motivacionais</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #muralFrases {
+            margin-top: 15px;
+            padding: 15px;
+            border-left: 5px solid #28a745;
+            background-color: #f4fdf7;
+            max-width: 450px;
+            min-height: 50px;
+            border-radius: 0 5px 5px 0;
+        }
+        .frase-motivacional {
+            font-style: italic;
+            font-size: 18px;
+            color: #155724;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnNovaFrase">Nova Frase</button>
+    <div id="muralFrases"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+const btnNovaFrase = document.getElementById('btnNovaFrase');
+const muralFrases = document.getElementById('muralFrases');
+
+
+let frases = [
+    "Você consegue!",
+    "Nunca desista!",
+    "Continue estudando!",
+    "Seu esforço vale a pena!"
+];
+
+
+btnNovaFrase.addEventListener('click', function() {
+   
+    const indiceAleatorio = Math.floor(Math.random() * frases.length);
+    
+  
+    const novoParagrafo = document.createElement('p');
+    
+  
+    novoParagrafo.classList.add('frase-motivacional');
+    
+  
+    novoParagrafo.textContent = frases[indiceAleatorio];
+    
+   
+    muralFrases.appendChild(novoParagrafo);
+});
