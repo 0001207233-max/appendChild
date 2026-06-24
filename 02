@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 2 - Contador de Mensagens</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #container {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        p { margin: 5px 0; color: #333; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <button id="btnAdicionar">Adicionar</button>
+    <div id="container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const btnAdicionar = document.getElementById('btnAdicionar');
+const container = document.getElementById('container');
+
+
+let contador = 1;
+
+
+btnAdicionar.addEventListener('click', function() {
+  
+    const novaMensagem = document.createElement('p');
+    
+  
+    novaMensagem.textContent = `Mensagem ${contador}`;
+    
+   
+    container.appendChild(novaMensagem);
+    
+    
+    contador++;
+});
