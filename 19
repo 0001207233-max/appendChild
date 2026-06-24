@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 19 - Alfabeto Dinâmico</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .controles { margin-bottom: 15px; }
+        button { padding: 8px 12px; margin-right: 5px; cursor: pointer; }
+        #painelAlfabeto {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            min-height: 60px;
+            max-width: 500px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .bloco-letra {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: #e0e0e0;
+            border: 1px solid #b0b0b0;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controles">
+        <button id="btnAdicionar">Adicionar Letra</button>
+        <button id="btnRemover">Remover Letra</button>
+    </div>
+
+    <div id="painelAlfabeto"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const btnAdicionar = document.getElementById('btnAdicionar');
+const btnRemover = document.getElementById('btnRemover');
+const painelAlfabeto = document.getElementById('painelAlfabeto');
+
+
+const alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+let indiceLetra = 0;
+
+
+btnAdicionar.addEventListener('click', function() {
+    
+    if (indiceLetra >= alfabeto.length) {
+        alert('Você já adicionou todas as letras do alfabeto!');
+        return;
+    }
+
+    
+    const novoSpan = document.createElement('span');
+    novoSpan.classList.add('bloco-letra');
+    
+
+    novoSpan.textContent = alfabeto[indiceLetra];
+    
+    
+    painelAlfabeto.appendChild(novoSpan);
+    
+   
+    indiceLetra++;
+});
+
+
+btnRemover.addEventListener('click', function() {
+   
+    const ultimaLetra = painelAlfabeto.lastElementChild;
+    
+   
+    if (ultimaLetra) {
+        painelAlfabeto.removeChild(ultimaLetra);
+      
+        indiceLetra--;
+    } else {
+        alert('Não há nenhuma letra para remover!');
+    }
+});
