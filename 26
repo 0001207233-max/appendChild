@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Final - Exclusão Individual</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f6f9; }
+        .input-container { margin-bottom: 15px; }
+        input { padding: 8px; margin-right: 5px; width: 250px; border: 1px solid #ccc; border-radius: 4px; }
+        #btnAdicionar { padding: 8px 12px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px; font-weight: bold; }
+        #btnAdicionar:hover { background-color: #0056b3; }
+        
+        ul { max-width: 400px; padding-left: 0; list-style-type: none; }
+        
+        /* Estilização para a linha da tarefa */
+        li { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 8px 12px; 
+            margin-bottom: 6px; 
+            background-color: white; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+        }
+        
+       
+        .btn-excluir { 
+            padding: 4px 8px; 
+            background-color: #dc3545; 
+            color: white; 
+            border: none; 
+            border-radius: 3px; 
+            cursor: pointer; 
+            font-size: 13px; 
+        }
+        .btn-excluir:hover { background-color: #bd2130; }
+    </style>
+</head>
+<body>
+
+    <div class="input-container">
+        <input type="text" id="inputTarefa" placeholder="Digite uma nova tarefa...">
+        <button id="btnAdicionar">Adicionar Tarefa</button>
+    </div>
+
+    <ul id="listaTarefas"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const inputTarefa = document.getElementById('inputTarefa');
+const btnAdicionar = document.getElementById('btnAdicionar');
+const listaTarefas = document.getElementById('listaTarefas');
+
+
+btnAdicionar.addEventListener('click', function() {
+    const textoTarefa = inputTarefa.value.trim();
+    
+   
+    if (textoTarefa === '') {
+        alert('Por favor, insira o nome de uma tarefa.');
+        return;
+    }
+    
+   
+    const novoItem = document.createElement('li');
+    
+   
+    const spanTexto = document.createElement('span');
+    spanTexto.textContent = textoTarefa;
+    
+    
+    const botaoExcluir = document.createElement('button');
+    botaoExcluir.textContent = '[Excluir]';
+    botaoExcluir.classList.add('btn-excluir');
+    
+    
+    botaoExcluir.addEventListener('click', function() {
+       
+        listaTarefas.removeChild(novoItem);
+    });
+    
+    
+    novoItem.appendChild(spanTexto);
+    novoItem.appendChild(botaoExcluir);
+    
+    
+    listaTarefas.appendChild(novoItem);
+    
+    
+    inputTarefa.value = '';
+    inputTarefa.focus();
+});
