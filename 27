@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Master - Chat Simples</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #e5ddd5; }
+        .chat-container { max-width: 450px; margin: 0 auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: flex; flex-direction: column; height: 500px; }
+        .chat-header { background: #075e54; color: white; padding: 15px; font-weight: bold; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        #btnApagar { background: #d32f2f; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        #btnApagar:hover { background: #b71c1c; }
+        
+      
+        #zonaConversa { flex: 1; padding: 15px; overflow-y: auto; background-image: url('https://githubusercontent.com'); display: flex; flex-direction: column; gap: 8px; }
+        
+       
+        .balao-mensagem { max-width: 80%; padding: 8px 12px; border-radius: 8px; font-size: 14px; word-wrap: break-word; background-color: #dcf8c6; align-self: flex-end; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+        
+        .chat-footer { padding: 10px; background: #f0f0f0; display: flex; gap: 10px; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+        input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; outline: none; }
+        #btnEnviar { background: #128c7e; color: white; border: none; padding: 10px 15px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+        #btnEnviar:hover { background: #075e54; }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <span>Mini Chat Online</span>
+            <button id="btnApagar">Apagar Última Mensagem</button>
+        </div>
+        
+        <div id="zonaConversa"></div>
+        
+        <div class="chat-footer">
+            <input type="text" id="inputMensagem" placeholder="Digite uma mensagem...">
+            <button id="btnEnviar">➔</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!--JS-->
+
+
+const inputMensagem = document.getElementById('inputMensagem');
+const btnEnviar = document.getElementById('btnEnviar');
+const btnApagar = document.getElementById('btnApagar');
+const zonaConversa = document.getElementById('zonaConversa');
+
+
+function enviarMensagem() {
+    const texto = inputMensagem.value.trim();
+    
+  
+    if (texto === '') {
+        return;
+    }
+    
+   
+    const novoBalao = document.createElement('div');
+    novoBalao.classList.add('balao-mensagem');
+    novoBalao.textContent = texto;
+    
+   
+    zonaConversa.appendChild(novoBalao);
+    
+   
+    inputMensagem.value = '';
+    inputMensagem.focus();
+    
+    
+    zonaConversa.scrollTop = zonaConversa.scrollHeight;
+}
+
+
+btnEnviar.addEventListener('click', enviarMensagem);
+
+
+inputMensagem.addEventListener('keypress', function(evento) {
+    if (evento.key === 'Enter') {
+        enviarMensagem();
+    }
+});
+
+
+btnApagar.addEventListener('click', function() {
+   
+    if (zonaConversa.children.length > 0) {
+        
+        const ultimaMensagem = zonaConversa.lastElementChild;
+        
+       
+        zonaConversa.removeChild(ultimaMensagem);
+    } else {
+        alert('Não há nenhuma mensagem na conversa para apagar!');
+    }
+});
