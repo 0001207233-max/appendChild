@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 10 - Gerador de Emojis</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #painelEmojis {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            min-height: 80px;
+            max-width: 500px;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+        
+        .emoji {
+            font-size: 30px;
+            margin-right: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnEmoji">Adicionar Emoji</button>
+    <div id="painelEmojis"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+const btnEmoji = document.getElementById('btnEmoji');
+const painelEmojis = document.getElementById('painelEmojis');
+
+
+btnEmoji.addEventListener('click', function() {
+   
+    const novoSpan = document.createElement('span');
+    
+    
+    novoSpan.classList.add('emoji');
+    
+   
+    novoSpan.textContent = '😀';
+    
+   
+    painelEmojis.appendChild(novoSpan);
+});
+
