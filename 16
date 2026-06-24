@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 16 - Galeria de Cores</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #galeria {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            min-height: 120px;
+            max-width: 500px;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        
+        .bloco-cor {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnCriar">Criar Quadrado</button>
+    <div id="galeria"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const btnCriar = document.getElementById('btnCriar');
+const galeria = document.getElementById('galeria');
+
+
+const cores = ['red', 'blue', 'green', 'yellow'];
+
+
+let indiceCor = 0;
+
+
+btnCriar.addEventListener('click', function() {
+   
+    const novoQuadrado = document.createElement('div');
+    
+   
+    novoQuadrado.classList.add('bloco-cor');
+    
+
+    novoQuadrado.style.backgroundColor = cores[indiceCor];
+    
+    
+    galeria.appendChild(novoQuadrado);
+    
+    
+    indiceCor = (indiceCor + 1) % cores.length;
+});
