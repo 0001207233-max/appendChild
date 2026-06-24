@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 22 - Painel de Notícias</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa; }
+        .botoes { margin-bottom: 20px; }
+        button { padding: 10px 15px; font-size: 15px; font-weight: bold; cursor: pointer; margin-right: 10px; border: none; border-radius: 4px; }
+        #btnNovaNoticia { background-color: #0056b3; color: white; }
+        #btnNovaNoticia:hover { background-color: #004085; }
+        #btnRemoverNoticia { background-color: #6c757d; color: white; }
+        #btnRemoverNoticia:hover { background-color: #5a6268; }
+        #painelNoticias { max-width: 600px; }
+        
+        .manchete { background-color: white; padding: 12px; margin-bottom: 10px; border-left: 5px solid #dc3545; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-weight: bold; color: #212529; }
+    </style>
+</head>
+<body>
+
+    <div class="botoes">
+        <button id="btnNovaNoticia">Nova Notícia</button>
+        <button id="btnRemoverNoticia">Remover Última Notícia</button>
+    </div>
+
+    <div id="painelNoticias"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!--JS-->
+
+
+const btnNovaNoticia = document.getElementById('btnNovaNoticia');
+const btnRemoverNoticia = document.getElementById('btnRemoverNoticia');
+const painelNoticias = document.getElementById('painelNoticias');
+
+
+const manchetes = [
+    "Tecnologia avança e inteligência artificial ganha novos recursos este ano.",
+    "Cientistas descobrem nova espécie marinha em águas profundas do oceano.",
+    "Economia local apresenta sinais de crescimento no último trimestre.",
+    "Inscrições para o campeonato de jogos digitais abrem na próxima semana.",
+    "Previsão do tempo indica chuvas isoladas na região durante o fim de semana."
+];
+
+
+btnNovaNoticia.addEventListener('click', function() {
+   
+    const indiceAleatorio = Math.floor(Math.random() * manchetes.length);
+    
+    
+    const novaNoticia = document.createElement('p');
+    
+    
+    novaNoticia.classList.add('manchete');
+    
+   
+    novaNoticia.textContent = manchetes[indiceAleatorio];
+    
+    
+    painelNoticias.appendChild(novaNoticia);
+});
+
+
+btnRemoverNoticia.addEventListener('click', function() {
+    
+    const ultimaNoticia = painelNoticias.lastElementChild;
+    
+    
+    if (ultimaNoticia) {
+        painelNoticias.removeChild(ultimaNoticia);
+    } else {
+        alert('O painel de notícias está vazio!');
+    }
+});
