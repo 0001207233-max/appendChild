@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 20 - Mural de Postagens</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f7f9fa; }
+        .controles { background-color: white; padding: 15px; border-radius: 8px; max-width: 500px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        textarea { width: 100px; min-width: 96%; height: 70px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; resize: none; font-family: inherit; }
+        .botoes { margin-top: 10px; }
+        button { padding: 8px 15px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-right: 10px; }
+        #btnPublicar { background-color: #007bff; color: white; }
+        #btnPublicar:hover { background-color: #0056b3; }
+        #btnRemover { background-color: #dc3545; color: white; }
+        #btnRemover:hover { background-color: #bd2130; }
+        #mural { max-width: 530px; }
+       
+        .postagem { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 12px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+    <div class="controles">
+        <textarea id="textoPostagem" placeholder="Digite seu recado para o mural..."></textarea>
+        <div class="botoes">
+            <button id="btnPublicar">Publicar</button>
+            <button id="btnRemover">Remover Última Postagem</button>
+        </div>
+    </div>
+
+    <div id="mural"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const textoPostagem = document.getElementById('textoPostagem');
+const btnPublicar = document.getElementById('btnPublicar');
+const btnRemover = document.getElementById('btnRemover');
+const mural = document.getElementById('mural');
+
+
+btnPublicar.addEventListener('click', function() {
+    const conteudo = textoPostagem.value.trim();
+    
+  
+    if (conteudo === '') {
+        alert('Por favor, escreva uma mensagem antes de publicar.');
+        return;
+    }
+    
+    
+    const novaPostagem = document.createElement('div');
+    novaPostagem.classList.add('postagem');
+    novaPostagem.textContent = conteudo;
+    
+    
+    mural.appendChild(novaPostagem);
+    
+    
+    textoPostagem.value = '';
+    textoPostagem.focus();
+});
+
+
+btnRemover.addEventListener('click', function() {
+  
+    const ultimaPostagem = mural.lastElementChild;
+    
+    
+    if (ultimaPostagem) {
+        mural.removeChild(ultimaPostagem);
+    } else {
+        alert('O mural está vazio! Não há postagens para remover.');
+    }
+});
