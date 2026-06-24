@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 17 - Histórico de Cliques</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { padding: 10px 15px; font-size: 16px; cursor: pointer; }
+        #historicoCliques {
+            margin-top: 15px;
+            padding-left: 20px;
+            max-width: 300px;
+        }
+        li {
+            padding: 4px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnClique">Clique Aqui</button>
+    <ul id="historicoCliques"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const btnClique = document.getElementById('btnClique');
+const historicoCliques = document.getElementById('historicoCliques');
+
+
+btnClique.addEventListener('click', function() {
+
+    const novaLinha = document.createElement('li');
+    
+    
+    novaLinha.textContent = 'Você clicou no botão!';
+    
+  
+    historicoCliques.appendChild(novaLinha);
+});
