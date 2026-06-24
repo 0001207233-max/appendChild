@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 4 - Lista de Compras</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .formulario { margin-bottom: 15px; }
+        input { padding: 8px; margin-right: 5px; width: 200px; }
+        button { padding: 8px 12px; cursor: pointer; }
+        ul { max-width: 300px; padding-left: 20px; }
+        li { padding: 5px 0; border-bottom: 1px dashed #ccc; }
+    </style>
+</head>
+<body>
+
+    <div class="formulario">
+        <input type="text" id="inputProduto" placeholder="Digite o nome do produto...">
+        <button id="btnAdicionar">Adicionar Produto</button>
+    </div>
+
+    <ul id="listaCompras"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--Js-->
+
+
+const inputProduto = document.getElementById('inputProduto');
+const btnAdicionar = document.getElementById('btnAdicionar');
+const listaCompras = document.getElementById('listaCompras');
+
+
+btnAdicionar.addEventListener('click', function() {
+    
+    const nomeProduto = inputProduto.value.trim();
+    
+   
+    if (nomeProduto === '') {
+        alert('Por favor, digite o nome de um produto.');
+        return;
+    }
+    
+    
+    const novoItem = document.createElement('li');
+    
+
+    novoItem.textContent = nomeProduto;
+    
+   
+    listaCompras.appendChild(novoItem);
+    
+   
+    inputProduto.value = '';
+    inputProduto.focus();
+});
