@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 14 - Fábrica de Botões</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #btnPrincipal { padding: 10px 15px; font-size: 16px; cursor: pointer; background-color: #28a745; color: white; border: none; border-radius: 5px; }
+        #painelBotoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px dashed #ccc;
+            min-height: 100px;
+            max-width: 500px;
+            border-radius: 5px;
+        }
+      
+        .btn-gerado {
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btnPrincipal">Criar Botão</button>
+    <div id="painelBotoes"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!--JS-->
+
+
+const btnPrincipal = document.getElementById('btnPrincipal');
+const painelBotoes = document.getElementById('painelBotoes');
+
+
+let contadorBotoes = 1;
+
+
+btnPrincipal.addEventListener('click', function() {
+    
+    const novoBotao = document.createElement('button');
+    
+    
+    novoBotao.classList.add('btn-gerado');
+    
+   
+    novoBotao.textContent = `Botão ${contadorBotoes}`;
+    
+    
+    painelBotoes.appendChild(novoBotao);
+    
+  
+    contadorBotoes++;
+});
