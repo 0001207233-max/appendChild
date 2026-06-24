@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 6 - Cadastro de Alunos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .cadastro { margin-bottom: 15px; }
+        input { padding: 8px; margin-right: 5px; width: 250px; }
+        button { padding: 8px 12px; cursor: pointer; }
+        ul { max-width: 350px; padding-left: 20px; }
+        li { padding: 6px; margin-bottom: 5px; background-color: #e9ecef; border-left: 4px solid #007bff; list-style-type: none; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <div class="cadastro">
+        <input type="text" id="inputAluno" placeholder="Digite o nome completo do aluno...">
+        <button id="btnCadastrar">Cadastrar Aluno</button>
+    </div>
+
+    <ul id="listaAlunos"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!--JS-->
+
+
+const inputAluno = document.getElementById('inputAluno');
+const btnCadastrar = document.getElementById('btnCadastrar');
+const listaAlunos = document.getElementById('listaAlunos');
+
+
+btnCadastrar.addEventListener('click', function() {
+    
+    const nomeAluno = inputAluno.value.trim();
+    
+    
+    if (nomeAluno === '') {
+        alert('Por favor, informe o nome do aluno antes de cadastrar.');
+        return;
+    }
+    
+    
+    const novoAluno = document.createElement('li');
+    
+    
+    novoAluno.textContent = nomeAluno;
+    
+    
+    listaAlunos.appendChild(novoAluno);
+    
+    
+    inputAluno.value = '';
+    inputAluno.focus();
+});
