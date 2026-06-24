@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 25 - Jogo das Bolinhas</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f0f2f5; }
+        .botoes { margin-bottom: 20px; }
+        button { padding: 10px 15px; font-size: 15px; font-weight: bold; cursor: pointer; margin-right: 10px; border: none; border-radius: 5px; color: white; }
+        #btnCriar { background-color: #007bff; }
+        #btnCriar:hover { background-color: #0056b3; }
+        #btnRemover { background-color: #dc3545; }
+        #btnRemover:hover { background-color: #c82333; }
+        
+        /* Área de jogo designada */
+        #areaJogo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: white;
+            padding: 20px;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            min-height: 150px;
+            max-width: 600px;
+            align-items: center;
+        }
+        
+        /* Estilização para tornar a div perfeitamente circular */
+        .bolinha {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Faz a div virar um círculo */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: transform 0.2s;
+        }
+        .bolinha:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="botoes">
+        <button id="btnCriar">Criar Bolinha</button>
+        <button id="btnRemover">Remover Bolinha</button>
+    </div>
+
+    <h3>Área do Jogo:</h3>
+    <div id="areaJogo"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+<!--JS-->
+
+
+const btnCriar = document.getElementById('btnCriar');
+const btnRemover = document.getElementById('btnRemover');
+const areaJogo = document.getElementById('areaJogo');
+
+
+function gerarCorAleatoria() {
+    const caracteres = '0123456789ABCDEF';
+    let cor = '#';
+    for (let i = 0; i < 6; i++) {
+        cor += caracteres[Math.floor(Math.random() * 16)];
+    }
+    return cor;
+}
+
+
+btnCriar.addEventListener('click', function() {
+    
+    const novaBolinha = document.createElement('div');
+    
+S
+    novaBolinha.classList.add('bolinha');
+    
+   
+    novaBolinha.style.backgroundColor = gerarCorAleatoria();
+    
+    
+    areaJogo.appendChild(novaBolinha);
+});
+
+
+btnRemover.addEventListener('click', function() {
+ 
+    const ultimaBolinha = areaJogo.lastElementChild;
+    
+    
+    if (ultimaBolinha) {
+        areaJogo.removeChild(ultimaBolinha);
+    } else {
+        alert('Nenhuma bolinha na área de jogo para remover!');
+    }
+});
