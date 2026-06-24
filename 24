@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 24 - Sistema de Log de Eventos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f6f9; }
+        .botoes { margin-bottom: 20px; }
+        button { padding: 10px 15px; font-size: 15px; font-weight: bold; cursor: pointer; margin-right: 10px; border: none; border-radius: 4px; color: white; }
+        
+        /* Cores temáticas para cada ação profissional */
+        #btnEntrar { background-color: #28a745; }
+        #btnEntrar:hover { background-color: #218838; }
+        #btnSalvar { background-color: #ffc107; color: #212529; }
+        #btnSalvar:hover { background-color: #e0a800; }
+        #btnSair { background-color: #dc3545; }
+        #btnSair:hover { background-color: #c82333; }
+        
+        #painelLog {
+            max-width: 600px;
+            background-color: #212529; /* Estilo terminal escuro */
+            color: #a5d6a7;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            font-family: 'Courier New', Courier, monospace;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .log-item { margin: 5px 0; font-size: 14px; border-bottom: 1px solid #343a40; padding-bottom: 4px; }
+        .timestamp { color: #80deea; margin-right: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="botoes">
+        <button id="btnEntrar">Entrar</button>
+        <button id="btnSalvar">Salvar</button>
+        <button id="btnSair">Sair</button>
+    </div>
+
+    <h3>Terminal de Logs do Sistema:</h3>
+    <div id="painelLog"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--JS-->
+
+
+const btnEntrar = document.getElementById('btnEntrar');
+const btnSalvar = document.getElementById('btnSalvar');
+const btnSair = document.getElementById('btnSair');
+const painelLog = document.getElementById('painelLog');
+
+
+function obterDataHoraAtual() {
+    const agora = new Date();
+    
+   
+    const data = agora.toLocaleDateString('pt-BR');
+    const hora = agora.toLocaleTimeString('pt-BR');
+    
+    return `[${data} ${hora}]`;
+}
+
+
+function registrarLog(textoAcao) {
+   
+    const novoLog = document.createElement('p');
+    novoLog.classList.add('log-item');
+    
+   
+    const spanTempo = document.createElement('span');
+    spanTempo.classList.add('timestamp');
+    spanTempo.textContent = obterDataHoraAtual();
+    
+
+    const textoMensagem = document.createTextNode(textoAcao);
+    
+
+    novoLog.appendChild(spanTempo);
+    novoLog.appendChild(textoMensagem);
+    
+  
+    painelLog.appendChild(novoLog);
+}
+
+
+btnEntrar.addEventListener('click', function() {
+    registrarLog("Usuário entrou no sistema");
+});
+
+btnSalvar.addEventListener('click', function() {
+    registrarLog("Usuário salvou os dados");
+});
+
+btnSair.addEventListener('click', function() {
+    registrarLog("Usuário saiu do sistema");
+});
